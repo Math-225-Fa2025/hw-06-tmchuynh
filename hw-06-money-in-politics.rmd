@@ -207,6 +207,9 @@ pac_all %>%
   ) +
   theme_minimal()
 ```
+
+The plot shows that contributions from Canadian PACs have generally been higher than those from Mexican PACs over most years. Both countries show variability in their contribution patterns, with some years showing significant spikes in contributions.
+
 ```{marginfigure}
 **Note:** The figure you create might look slightly different than this one if the data on the website has been updated recently.
 ```
