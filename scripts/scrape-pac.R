@@ -45,3 +45,13 @@ scrape_pac <- function(url) {
   # return data frame
   pac
 }
+
+# test function ----------------------------------------------------------------
+url_2022 <- "https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs/2022"
+pac_2022 <- scrape_pac(url_2022)
+
+url_2020 <- "https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs/2020"
+pac_2020 <- scrape_pac(url_2020)
+
+url_2000 <- "https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs/2000"
+pac_2000 <- scrape_pac(url_2000)
