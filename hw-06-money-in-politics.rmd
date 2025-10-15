@@ -260,6 +260,35 @@ pac_all %>%
   theme_minimal()
 ```
 
+```{r uk-party-contributions}
+# Create UK contributions by party plot
+pac_all %>%
+  filter(country == "UK") %>%
+  group_by(year) %>%
+  summarise(
+    Democrat = sum(dems, na.rm = TRUE),
+    Republican = sum(repubs, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  pivot_longer(
+    cols = c(Democrat, Republican),
+    names_to = "party",
+    values_to = "amount"
+  ) %>%
+  ggplot(aes(x = year, y = amount, color = party)) +
+  geom_line(size = 1) +
+  scale_color_manual(values = c("Democrat" = "blue", "Republican" = "red")) +
+  scale_y_continuous(labels = dollar_format(scale = 0.000001, suffix = "M")) +
+  labs(
+    x = "Year",
+    y = "Amount",
+    color = "Party",
+    title = "Contribution to US politics from UK-Connected PACs",
+    subtitle = "By party, over time"
+  ) +
+  theme_minimal()
+```
+
 Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards and review the md document on GitHub to make sure you're happy with the final state of your work.*
 
 [^hw-06-money-in-politics-1]: Source: [Open Secrets - Foreign Connected PACs](https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs).
