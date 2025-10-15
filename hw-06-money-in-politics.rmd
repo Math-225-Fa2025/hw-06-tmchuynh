@@ -1,15 +1,13 @@
 ---
 title: "HW 06 - Money in US politics"
 output: 
-  tufte::tufte_html:
-    css: ../hw.css
-    tufte_variant: "envisioned"
-    highlight: pygments
-  tufte::tufte_handout:
+  pdf_document:
     latex_engine: xelatex
-    highlight: pygments
-    keep_tex: true
+    toc: true
+    number_sections: true
+    fig_caption: true
     citation_package: natbib
+    keep_tex: true
 link-citations: true
 ---
 
@@ -172,7 +170,7 @@ The following exercises walk you through how to make these fixes to the data.
 ```{r eval = TRUE, echo = FALSE, message = FALSE, fig.fullwidth = TRUE, fig.asp = 0.5}
 pac_all <- read_csv("data/pac-all.csv")
 
-parse_currency <- function(x){
+parse_currency <- function(x) {
   x %>%
     # remove dollar sign
     str_remove("\\$") %>%
