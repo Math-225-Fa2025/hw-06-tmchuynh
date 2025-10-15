@@ -165,6 +165,19 @@ pac_all
     -   Some contribution amounts are in the millions (e.g. Anheuser-Busch contributed a total of \$1,510,897 in 2008).
         In this case we need to remove all occurrences of `,`, which we can do by using `str_remove_all()` instead of `str_remove()`.
 
+```{r clean-currency-columns}
+# Clean currency columns and convert to numeric
+pac_all <- pac_all %>%
+  mutate(
+    total = str_remove_all(total, "\\$|,") %>% as.numeric(),
+    dems = str_remove_all(dems, "\\$|,") %>% as.numeric(),
+    repubs = str_remove_all(repubs, "\\$|,") %>% as.numeric()
+  )
+
+# Print top 10 rows
+pac_all
+```
+
 *Now is a good time to knit your document, commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
 
 ## Data visualization and interpretation
@@ -177,6 +190,23 @@ pac_all
     -   Calculate sum of total contributions from PACs for each year for each country by using a sequence of `group_by()` then `summarise()`.
     -   Make a plot of total contributions (y-axis) by year (x-axis) where two lines identified by different colours represent each of Canada and Mexico.
 
+```{r canada-mexico-plot}
+# Filter for Canada and Mexico, group by year and country, then plot
+pac_all %>%
+  filter(country %in% c("Canada", "Mexico")) %>%
+  group_by(year, country) %>%
+  summarise(total_contributions = sum(total, na.rm = TRUE), .groups = "drop") %>%
+  ggplot(aes(x = year, y = total_contributions, color = country)) +
+  geom_line(size = 1) +
+  scale_y_continuous(labels = dollar_format()) +
+  labs(
+    x = "Year",
+    y = "Total Contributions",
+    color = "Country",
+    title = "Total Contributions from Canada and Mexico PACs Over Time"
+  ) +
+  theme_minimal()
+```
 ```{marginfigure}
 **Note:** The figure you create might look slightly different than this one if the data on the website has been updated recently.
 ```
