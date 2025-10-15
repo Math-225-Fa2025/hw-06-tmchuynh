@@ -147,6 +147,15 @@ The following exercises walk you through how to make these fixes to the data.
     This can be accomplished by setting the `extra` argument in to `"merge"` so that the cell is split into only 2 segments, e.g. we want `"Denmark/Novo Nordisk A/S"` to be split into `"Denmark"` and `"Novo Nordisk A/S"`.
     (See help for `separate()` for more on this.) End your code chunk by printing out the top 10 rows of your data frame (if you just type the data frame name it should automatically do this for you).
 
+```{r separate-country-parent}
+# Separate country_parent into country and parent columns
+pac_all <- pac_all %>%
+  separate(country_parent, into = c("country", "parent"), sep = "/", extra = "merge")
+
+# Print top 10 rows
+pac_all
+```
+
 3.  Remove the character strings including `$` and `,` signs in the `total`, `dems`,and `repubs` columns and convert these columns to numeric.
     End your code chunk by printing out the top 10 rows of your data frame (if you just type the data frame name it should automatically do this for you).
     A couple hints to help you out:
