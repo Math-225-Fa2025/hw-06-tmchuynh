@@ -13,7 +13,7 @@ link-citations: true
 
 ```{r include = FALSE}
 knitr::opts_chunk$set(
-  eval = FALSE,
+  eval = TRUE,  # Changed to TRUE to execute code
   out.width = "80%",
   fig.asp = 0.618,
   fig.width = 10,
@@ -123,6 +123,13 @@ Complete the following set of steps in the `hw-06.Rmd` file in your repository.
 </div>
 
 1.  In your R Markdown file, load `pac-all.csv` and report its number of observations and variables using inline code.
+
+```{r load-data}
+# Load the scraped data
+pac_all <- read_csv("data/pac-all.csv")
+```
+
+The dataset contains `r nrow(pac_all)` observations and `r ncol(pac_all)` variables.
 
 ## Data cleaning
 
