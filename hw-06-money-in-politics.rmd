@@ -292,6 +292,8 @@ pac_all %>%
   theme_minimal()
 ```
 
+The plot reveals that UK-connected PACs have generally contributed more to Republican candidates than Democratic candidates over most election cycles. There are notable fluctuations in both parties' contributions over time, with some years showing particularly high contributions to one party or the other.
+
 Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards and review the md document on GitHub to make sure you're happy with the final state of your work.*
 
 [^hw-06-money-in-politics-1]: Source: [Open Secrets - Foreign Connected PACs](https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs).
