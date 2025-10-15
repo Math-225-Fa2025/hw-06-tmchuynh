@@ -55,3 +55,22 @@ pac_2020 <- scrape_pac(url_2020)
 
 url_2000 <- "https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs/2000"
 pac_2000 <- scrape_pac(url_2000)
+
+# list of urls -----------------------------------------------------------------
+
+# first part of url
+root <- "https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs/"
+
+# second part of url (election years as a sequence)
+year <- seq(from = 2000, to = 2022, by = 2)
+
+# construct urls by pasting first and second parts together
+urls <- paste0(root, year)
+
+# map the scrape_pac function over list of urls --------------------------------
+
+pac_all <- purrr::map_dfr(urls, scrape_pac)
+
+# write data -------------------------------------------------------------------
+
+readr::write_csv(pac_all, file = here::here("data/pac-all.csv"))
