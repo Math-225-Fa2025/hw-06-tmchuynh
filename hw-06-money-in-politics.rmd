@@ -266,6 +266,12 @@ pac_all %>%
 ```{r uk-party-contributions}
 # Create UK contributions by party plot
 pac_all %>%
+  separate(country_parent, into = c("country", "parent"), sep = "/", extra = "merge") %>%
+  mutate(
+    total = str_remove_all(total, "\\$|,") %>% as.numeric(),
+    dems = str_remove_all(dems, "\\$|,") %>% as.numeric(),
+    repubs = str_remove_all(repubs, "\\$|,") %>% as.numeric()
+  ) %>%
   filter(country == "UK") %>%
   group_by(year) %>%
   summarise(
